@@ -1,5 +1,5 @@
 import model.Person
-import org.apache.spark.sql.{Dataset, Row, SparkSession}
+import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 
 object App {
 
@@ -8,18 +8,27 @@ object App {
 
     import spark.implicits._
 
+//  Using DataFrame
     val people: Seq[(String, String, String, Integer, String, Double)] = Seq(
-      ("marek", "czuma", "111111111", 10, "M", 10000),
-      ("marek", "czuma", "222222222", 20, "M", 20000),
-      ("marek", "czuma", "333333333", 30, "M", 30000),
-      ("marek", "czuma", "444444444", 40, "M", 40000),
+        ("Arek", "Ariel", "111111111", 10, "M", 10000),
+        ("Zbyszek", "Byczek", "222222222", 20, "M", 20000),
+        ("Marek", "Korek", "333333333", 30, "M", 30000),
+        ("Sasza", "Mana", "444444444", 40, "M", 40000),
     )
-
-    val peopleDF:Dataset[Row] = people.toDF("firstName", "lastName", "personalNumber", "age",
+    val peopleSet:DataFrame = people.toDF("firstName", "lastName", "personalNumber", "age",
       "sex", "income")
 
-    peopleDF.show()
-    peopleDF.select("firstName", "sex", "income").show()
+//    Use strongly typed DataSet[Person]
+//    val people: Seq[Person] = Seq(
+//      Person("Arek", "Ariel", "111111111", 10, "M", 10000),
+//      Person("Zbyszek", "Byczek", "222222222", 20, "M", 20000),
+//      Person("Marek", "Korek", "333333333", 30, "M", 30000),
+//      Person("Sasza", "Mana", "444444444", 40, "M", 40000),
+//    )
+//    val peopleSet:Dataset[Person] = people.toDS()
+
+    peopleSet.show()
+    peopleSet.select("firstName", "sex", "income").show()
   }
 
 }
