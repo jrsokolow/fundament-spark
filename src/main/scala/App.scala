@@ -1,3 +1,4 @@
+import model.Person
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
 
 object App {
@@ -7,17 +8,18 @@ object App {
 
     import spark.implicits._
 
-    val people: Seq[(String, String, Int)] = Seq(
-      ("marek", "czuma", 42),
-      ("atos", "aramis", 10),
-      ("kot", "mlot", 100),
-      ("reks", "kleks", 149)
+    val people: Seq[(String, String, String, Integer, String, Double)] = Seq(
+      ("marek", "czuma", "111111111", 10, "M", 10000),
+      ("marek", "czuma", "222222222", 20, "M", 20000),
+      ("marek", "czuma", "333333333", 30, "M", 30000),
+      ("marek", "czuma", "444444444", 40, "M", 40000),
     )
 
-    val peopleDF:Dataset[Row] = people.toDF("firstName", "lastName", "age")
+    val peopleDF:Dataset[Row] = people.toDF("firstName", "lastName", "personalNumber", "age",
+      "sex", "income")
 
     peopleDF.show()
-    peopleDF.select("firstName", "lastName").show()
+    peopleDF.select("firstName", "sex", "income").show()
   }
 
 }
