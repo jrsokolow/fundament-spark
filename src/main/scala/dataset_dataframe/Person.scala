@@ -1,4 +1,4 @@
-package model
+package dataset_dataframe
 
 case class Person( var firstName: String,
                     var lastName: String,

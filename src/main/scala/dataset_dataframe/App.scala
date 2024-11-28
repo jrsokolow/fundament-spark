@@ -1,5 +1,6 @@
-import model.Person
-import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
+package dataset_dataframe
+
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object App {
 
