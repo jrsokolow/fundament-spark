@@ -1,8 +1,7 @@
-package rdd_example
+package rdd.example
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions._
 
 object App {
 
@@ -17,8 +16,9 @@ object App {
 
     val namesList: Seq[String] = Seq("marek", "ania", "kania", "ignas", "leszek")
     val namesRDD: RDD[String] = spark.sparkContext.parallelize(namesList)
-    val namesBig: RDD[String] = namesRDD.map(n=>n.toUpperCase)
-    namesBig.take(5).foreach(println)
+    val namesBig: RDD[String] = namesRDD.map(n=>n.toUpperCase())
+
+    namesBig.take(1).foreach(println)
 
   }
 
