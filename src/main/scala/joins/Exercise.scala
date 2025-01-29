@@ -1,5 +1,6 @@
 package joins
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
 import org.apache.spark.sql.functions._
 
@@ -28,7 +29,7 @@ object Exercise {
         val jobsDF:Dataset[Row] = Seq(("programmer", 0), ("teacher", 18), ("senator", 30),
           ("president", 35)).toDF("job", "ageLimit")
 
-        val peopleDF:Dataset[Row] = people.toDF("id", "firstName", "lastName", "age")
+        val peopleDF:Dataset[Row] = people.toDF("id", "firstName", "lastName", "age") 
 
         val peopleWithJobs:Dataset[Row] = peopleDF.join(jobsDF, length(peopleDF("firstName")) +
           length(peopleDF("lastName")) <=
